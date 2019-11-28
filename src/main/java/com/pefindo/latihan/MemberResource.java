@@ -21,17 +21,17 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ToDoResource {
+public class MemberResource {
     @GET
     @Path("/get")
-    public List<todo> getall(){
-        return todo.listAll();
+    public List<Members> getall(){
+        return Members.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(todo item){
+    public Response add(Members item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -40,7 +40,7 @@ public class ToDoResource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-        todo entity = todo.findById(id);
+        Members entity = Members.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -48,39 +48,40 @@ public class ToDoResource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(todo item, @PathParam("id") Long id){
-        todo entity = todo.findById(id);
-        entity.completed=item.completed;
-        entity.order=item.order;
-        entity.title=item.title;
+    public Response update(Members item, @PathParam("id") Long id){
+        Members entity = Members.findById(id);
+        entity.member_code=item.member_code;
+        entity.member_name=item.member_name;
+        entity.active_flag=item.active_flag;
+        entity.image=item.image;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
 
     // Only update title
-    @PATCH
-    @Transactional
-    @Path("/title/{id}")
-    public Response updateTitle(todo item, @PathParam("id") Long id){
-        todo entity = todo.findById(id);
-        entity.title=item.title;
-        entity.id=id;
-        return Response.ok(entity).status(200).build();
-    }
+    // @PATCH
+    // @Transactional
+    // @Path("/title/{id}")
+    // public Response updateTitle(todo item, @PathParam("id") Long id){
+    //     Members entity = Members.findById(id);
+    //     entity.memberName=item.memberName;
+    //     entity.id=id;
+    //     return Response.ok(entity).status(200).build();
+    // }
 
     @GET
     @Transactional
-    @Path("/{title}")
+    @Path("/{member_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public todo title(@PathParam String title){
-        return todo.findByTitle(title);
+    public Members title(@PathParam String member_name){
+        return Members.findByMemberName(member_name);
     }
 
     @GET
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public todo id(@PathParam Long id){
-        return todo.findById(id);
+    public Members id(@PathParam Long id){
+        return Members.findById(id);
     }
 }

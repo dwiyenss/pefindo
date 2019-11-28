@@ -1,4 +1,4 @@
-package com.dwi.latihan;
+package com.pefindo.latihan;
 
 import io.quarkus.test.junit.NativeImageTest;
 
