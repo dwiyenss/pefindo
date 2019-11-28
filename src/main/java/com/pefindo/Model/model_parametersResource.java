@@ -1,4 +1,4 @@
-package com.pefindo.latihan;
+package com.pefindo.Model;
 
 import java.util.List;
 
