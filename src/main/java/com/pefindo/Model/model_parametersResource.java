@@ -18,7 +18,7 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 /**
  * ToDoResource
  */
-@Path("/")
+@Path("/modelParameter")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class model_parametersResource {
@@ -58,17 +58,6 @@ public class model_parametersResource {
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
-
-    // Only update title
-    // @PATCH
-    // @Transactional
-    // @Path("/title/{id}")
-    // public Response updateTitle(todo item, @PathParam("id") Long id){
-    //     Members entity = Members.findById(id);
-    //     entity.memberName=item.memberName;
-    //     entity.id=id;
-    //     return Response.ok(entity).status(200).build();
-    // }
 
     @GET
     @Transactional
