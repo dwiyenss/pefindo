@@ -21,17 +21,17 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class MemberResource {
+public class model_parametersResource {
     @GET
     @Path("/get")
-    public List<Members> getall(){
-        return Members.listAll();
+    public List<model_parameters> getall(){
+        return model_parameters.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(Members item){
+    public Response add(model_parameters item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -40,7 +40,7 @@ public class MemberResource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-        Members entity = Members.findById(id);
+        model_parameters entity = model_parameters.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -48,12 +48,13 @@ public class MemberResource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(Members item, @PathParam("id") Long id){
-        Members entity = Members.findById(id);
-        entity.member_code=item.member_code;
-        entity.member_name=item.member_name;
-        entity.active_flag=item.active_flag;
-        entity.image=item.image;
+    public Response update(model_parameters item, @PathParam("id") Long id){
+        model_parameters entity = model_parameters.findById(id);
+        entity.parameter=item.parameter;
+        entity.label=item.label;
+        entity.tipe_data=item.tipe_data;
+        entity.is_web=item.is_web;
+        entity.id_model=item.id_model;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
@@ -71,17 +72,17 @@ public class MemberResource {
 
     @GET
     @Transactional
-    @Path("/{member_name}")
+    @Path("/{label}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Members member_name(@PathParam String member_name){
-        return Members.findByMemberName(member_name);
+    public model_parameters label(@PathParam String label){
+        return model_parameters.findByLabel(label);
     }
 
     @GET
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Members id(@PathParam Long id){
-        return Members.findById(id);
+    public model_parameters id(@PathParam Long id){
+        return model_parameters.findById(id);
     }
 }
