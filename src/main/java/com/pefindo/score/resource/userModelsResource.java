@@ -1,5 +1,6 @@
-package com.pefindo.Model;
+package com.pefindo.score.resource;
 
+import com.pefindo.score.model.userModels;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,20 +19,20 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 @Path("/user_models")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class User_Models_Resource {
+public class userModelsResource {
 	
 	// Methods GET
 	@GET
 	@Path("/get")
-	public List<User_Models> getall(){
-		return User_Models.listAll();
+	public List<userModels> getall(){
+		return userModels.listAll();
 	}
 	
 	// Methods POST
 	@POST
 	@Transactional
 	@Path("/post")
-	public Response add(User_Models item) {
+	public Response add(userModels item) {
 		item.persist();
 		return Response.ok(item).status(201).build();
 	}
@@ -41,7 +42,7 @@ public class User_Models_Resource {
 	@Transactional
 	@Path("/delete/{id}")
 	public Response delete(@PathParam("id") long id) {
-		User_Models entity = User_Models.findById("id");
+		userModels entity = userModels.findById("id");
 		entity.delete();
 		return Response.status(204).build();		
 	}
@@ -50,8 +51,8 @@ public class User_Models_Resource {
 	@PATCH
 	@Transactional
 	@Path("/update/{id}")
-	public Response update(User_Models item, @PathParam("id") long id){
-		User_Models entity = User_Models.findById(id);
+	public Response update(userModels item, @PathParam("id") long id){
+		userModels entity = userModels.findById(id);
 		entity.id_model = item.id_model;
 		entity.id_user = item.id_user;
 		entity.active_flag = item.active_flag;
@@ -64,8 +65,8 @@ public class User_Models_Resource {
     @Transactional
     @Path("/get_by/{active_flag}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User_Models active_flag(@PathParam String active_flag) {
-    	return User_Models.findByName(active_flag);
+    public userModels active_flag(@PathParam String active_flag) {
+    	return userModels.findByName(active_flag);
     }
 		
 }

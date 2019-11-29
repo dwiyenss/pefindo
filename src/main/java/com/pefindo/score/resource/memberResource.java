@@ -1,5 +1,6 @@
-package com.pefindo.Model;
+package com.pefindo.score.resource;
 
+import com.pefindo.score.model.members;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,20 +19,20 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 /**
  * ToDoResource
  */
-@Path("/modelParameter")
+@Path("/members")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class model_parametersResource {
+public class memberResource {
     @GET
     @Path("/get")
-    public List<model_parameters> getall(){
-        return model_parameters.listAll();
+    public List<members> getall(){
+        return members.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(model_parameters item){
+    public Response add(members item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -40,7 +41,7 @@ public class model_parametersResource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-        model_parameters entity = model_parameters.findById(id);
+        members entity = members.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -48,30 +49,29 @@ public class model_parametersResource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(model_parameters item, @PathParam("id") Long id){
-        model_parameters entity = model_parameters.findById(id);
-        entity.parameter=item.parameter;
-        entity.label=item.label;
-        entity.tipe_data=item.tipe_data;
-        entity.is_web=item.is_web;
-        entity.id_model=item.id_model;
+    public Response update(members item, @PathParam("id") Long id){
+        members entity = members.findById(id);
+        entity.member_code=item.member_code;
+        entity.member_name=item.member_name;
+        entity.active_flag=item.active_flag;
+        entity.image=item.image;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
 
     @GET
     @Transactional
-    @Path("/{label}")
+    @Path("/{member_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public model_parameters label(@PathParam String label){
-        return model_parameters.findByLabel(label);
+    public members member_name(@PathParam String member_name){
+        return members.findByMemberName(member_name);
     }
 
     @GET
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public model_parameters id(@PathParam Long id){
-        return model_parameters.findById(id);
+    public members id(@PathParam Long id){
+        return members.findById(id);
     }
 }

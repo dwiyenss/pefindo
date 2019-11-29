@@ -1,5 +1,6 @@
-package com.pefindo.Model;
+package com.pefindo.score.resource;
 
+import com.pefindo.score.model.modelParameters;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,20 +19,20 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 /**
  * ToDoResource
  */
-@Path("/Users")
+@Path("/modelParameter")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UsersResource {
+public class modelParametersResource {
     @GET
     @Path("/get")
-    public List<users> getall(){
-        return users.listAll();
+    public List<modelParameters> getall(){
+        return modelParameters.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(users item){
+    public Response add(modelParameters item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -40,7 +41,7 @@ public class UsersResource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-        users entity = users.findById(id);
+        modelParameters entity = modelParameters.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -48,15 +49,14 @@ public class UsersResource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(users item, @PathParam("id") Long id){
-        users entity = users.findById(id);
-        entity.nama=item.nama;
-        entity.username=item.username;
-        entity.password=item.password;
-        entity.role_code=item.role_code;
-        entity.ip_address=item.ip_address;
-        entity.id_member=item.id_member;
-        entity.id=id;
+    public Response update(modelParameters item, @PathParam("id") Long id){
+        modelParameters entity = modelParameters.findById(id);
+        entity.parameter = item.parameter;
+        entity.label = item.label;
+        entity.tipeData = item.tipeData;
+        entity.isWeb = item.isWeb;
+        entity.idModel = item.idModel;
+        entity.id = id;
         return Response.ok(entity).status(200).build();
     }
 
@@ -64,15 +64,15 @@ public class UsersResource {
     @Transactional
     @Path("/{label}")
     @Produces(MediaType.APPLICATION_JSON)
-    public users nama(@PathParam String nama){
-        return users.findByNama(nama);
+    public modelParameters label(@PathParam String label){
+        return modelParameters.findByLabel(label);
     }
 
     @GET
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public users id(@PathParam Long id){
-        return users.findById(id);
+    public modelParameters id(@PathParam Long id){
+        return modelParameters.findById(id);
     }
 }

@@ -1,5 +1,6 @@
-package com.pefindo.Model;
+package com.pefindo.score.resource;
 
+import com.pefindo.score.model.parameterDetails;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,21 +15,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
-@Path("/parameter_details")
+@Path("/parameterDetails")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class Parameter_Details_Resource {
+public class parameterDetailsResource {
 	
 	@GET
     @Path("/get")
-    public List<Parameter_Details> getall(){
-        return Parameter_Details.listAll();
+    public List<parameterDetails> getall(){
+        return parameterDetails.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(Parameter_Details item){
+    public Response add(parameterDetails item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -37,7 +38,7 @@ public class Parameter_Details_Resource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-    	Parameter_Details entity = Parameter_Details.findById(id);
+    	parameterDetails entity = parameterDetails.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -45,8 +46,8 @@ public class Parameter_Details_Resource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(Parameter_Details item, @PathParam("id") Long id){
-    	Parameter_Details entity = Parameter_Details.findById(id);
+    public Response update(parameterDetails item, @PathParam("id") Long id){
+    	parameterDetails entity = parameterDetails.findById(id);
         entity.sequence=item.sequence;
         entity.operator=item.operator;
         entity.start_value=item.start_value;
@@ -64,8 +65,8 @@ public class Parameter_Details_Resource {
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Parameter_Details id(@PathParam Long id){
-        return Parameter_Details.findById(id);
+    public parameterDetails id(@PathParam Long id){
+        return parameterDetails.findById(id);
     }
     
     // Methods GET BY active_flag
@@ -73,7 +74,7 @@ public class Parameter_Details_Resource {
     @Transactional
     @Path("/get_by/{operator}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Parameter_Details active_flag(@PathParam String operator) {
-     	return Parameter_Details.findByName(operator);
+    public parameterDetails active_flag(@PathParam String operator) {
+     	return parameterDetails.findByName(operator);
      }
 }

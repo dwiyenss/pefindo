@@ -1,4 +1,4 @@
-package com.pefindo.Model;
+package com.pefindo.score.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
-public class Members extends PanacheEntityBase {
+public class members extends PanacheEntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
@@ -18,10 +18,10 @@ public class Members extends PanacheEntityBase {
 	public String active_flag;
 	public String image;
 
-	public static Members findByMemberName(String member_name){
+	public static members findByMemberName(String member_name){
 		return find("member_name", member_name).firstResult();
 	}
-	public static Members findById(Long id){
+	public static members findById(Long id){
 		return find("id", id).firstResult();
 	}
 }

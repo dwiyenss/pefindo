@@ -1,4 +1,4 @@
-package com.pefindo.Model;
+package com.pefindo.score.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

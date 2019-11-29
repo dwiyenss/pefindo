@@ -1,5 +1,6 @@
-package com.pefindo.Model;
+package com.pefindo.score.resource;
 
+import com.pefindo.score.model.users;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,20 +19,20 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 /**
  * ToDoResource
  */
-@Path("/Members")
+@Path("/Users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class MemberResource {
+public class usersResource {
     @GET
     @Path("/get")
-    public List<Members> getall(){
-        return Members.listAll();
+    public List<users> getall(){
+        return users.listAll();
     }
 
     @POST
     @Transactional
     @Path("/post")
-    public Response add(Members item){
+    public Response add(users item){
         item.persist();
         return Response.ok(item).status(201).build();
     }
@@ -40,7 +41,7 @@ public class MemberResource {
     @Transactional
     @Path("/{id}")
     public Response deleteOne(@PathParam("id") Long id){
-        Members entity = Members.findById(id);
+        users entity = users.findById(id);
         entity.delete();
         return Response.status(204).build();
     }
@@ -48,29 +49,31 @@ public class MemberResource {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Response update(Members item, @PathParam("id") Long id){
-        Members entity = Members.findById(id);
-        entity.member_code=item.member_code;
-        entity.member_name=item.member_name;
-        entity.active_flag=item.active_flag;
-        entity.image=item.image;
+    public Response update(users item, @PathParam("id") Long id){
+        users entity = users.findById(id);
+        entity.nama=item.nama;
+        entity.username=item.username;
+        entity.password=item.password;
+        entity.role_code=item.role_code;
+        entity.ip_address=item.ip_address;
+        entity.id_member=item.id_member;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
 
     @GET
     @Transactional
-    @Path("/{member_name}")
+    @Path("/{label}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Members member_name(@PathParam String member_name){
-        return Members.findByMemberName(member_name);
+    public users nama(@PathParam String nama){
+        return users.findByNama(nama);
     }
 
     @GET
     @Transactional
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Members id(@PathParam Long id){
-        return Members.findById(id);
+    public users id(@PathParam Long id){
+        return users.findById(id);
     }
 }

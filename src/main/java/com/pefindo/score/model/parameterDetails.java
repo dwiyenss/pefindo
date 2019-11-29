@@ -1,4 +1,4 @@
-package com.pefindo.Model;
+package com.pefindo.score.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
-public class Parameter_Details extends PanacheEntityBase {
+public class parameterDetails extends PanacheEntityBase {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
 	public long id;
 	public int sequence;
@@ -20,7 +20,7 @@ public class Parameter_Details extends PanacheEntityBase {
 	public int id_model_parameter;
 	public int id_reason_code;
 	
-	public static Parameter_Details findByName(String operators) {
+	public static parameterDetails findByName(String operators) {
 		return find("operator", operators).firstResult();
 	}
 }
