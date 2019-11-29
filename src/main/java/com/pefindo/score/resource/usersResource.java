@@ -54,9 +54,9 @@ public class usersResource {
         entity.nama=item.nama;
         entity.username=item.username;
         entity.password=item.password;
-        entity.role_code=item.role_code;
-        entity.ip_address=item.ip_address;
-        entity.id_member=item.id_member;
+        entity.roleCode=item.roleCode;
+        entity.ipAddress=item.ipAddress;
+        entity.idMember=item.idMember;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }
