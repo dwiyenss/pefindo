@@ -1,7 +1,6 @@
 package com.pefindo.score.resource;
 
 import com.pefindo.score.model.members;
-import com.pefindo.score.model.parameterDetails;
 
 import java.util.List;
 
