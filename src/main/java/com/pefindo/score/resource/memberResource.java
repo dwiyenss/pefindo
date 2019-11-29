@@ -51,9 +51,9 @@ public class memberResource {
     @Path("/{id}")
     public Response update(members item, @PathParam("id") Long id){
         members entity = members.findById(id);
-        entity.member_code=item.member_code;
-        entity.member_name=item.member_name;
-        entity.active_flag=item.active_flag;
+        entity.memberCode=item.memberCode;
+        entity.memberName=item.memberName;
+        entity.activeFlag=item.activeFlag;
         entity.image=item.image;
         entity.id=id;
         return Response.ok(entity).status(200).build();

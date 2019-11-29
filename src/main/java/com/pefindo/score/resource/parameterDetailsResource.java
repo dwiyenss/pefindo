@@ -50,13 +50,13 @@ public class parameterDetailsResource {
     	parameterDetails entity = parameterDetails.findById(id);
         entity.sequence=item.sequence;
         entity.operator=item.operator;
-        entity.start_value=item.start_value;
-        entity.end_value=item.end_value;
-        entity.like_value=item.like_value;
+        entity.startValue=item.startValue;
+        entity.endValue=item.endValue;
+        entity.likeValue=item.likeValue;
         entity.weight=item.weight;
-        entity.reason_code=item.reason_code;
-        entity.id_model_parameter=item.id_model_parameter;
-        entity.id_reason_code=item.id_reason_code;
+        entity.reasonCode=item.reasonCode;
+        entity.idModelParameter=item.idModelParameter;
+        entity.idReasonCode=item.idReasonCode;
         entity.id=id;
         return Response.ok(entity).status(200).build();
     }

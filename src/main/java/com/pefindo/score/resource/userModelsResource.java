@@ -53,9 +53,9 @@ public class userModelsResource {
 	@Path("/update/{id}")
 	public Response update(userModels item, @PathParam("id") long id){
 		userModels entity = userModels.findById(id);
-		entity.id_model = item.id_model;
-		entity.id_user = item.id_user;
-		entity.active_flag = item.active_flag;
+		entity.idModel = item.idModel;
+		entity.idUser = item.idUser;
+		entity.activeFlag = item.activeFlag;
 		entity.id = id;
 		return Response.ok(entity).status(201).build();
 	}

@@ -1,5 +1,6 @@
 package com.pefindo.score.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,13 +14,20 @@ public class members extends PanacheEntityBase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 
-	public String member_code;
-	public String member_name;
-	public String active_flag;
+	@Column(name = "member_code", nullable = false )
+	public String memberCode;
+	
+	@Column(name = "member_name", nullable = false )
+	public String memberName;
+
+	@Column(name = "active_flag", nullable = false )
+	public String activeFlag;
+
+	@Column(name = "image", nullable = false )
 	public String image;
 
 	public static members findByMemberName(String member_name){
-		return find("member_name", member_name).firstResult();
+		return find("memberName", member_name).firstResult();
 	}
 	public static members findById(Long id){
 		return find("id", id).firstResult();
