@@ -1,6 +1,8 @@
 package com.pefindo.score.resource;
 
 import com.pefindo.score.model.members;
+import com.pefindo.score.model.parameterDetails;
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -59,13 +61,15 @@ public class memberResource {
         return Response.ok(entity).status(200).build();
     }
 
+
+    
     @GET
     @Transactional
-    @Path("/{member_name}")
+    @Path("/get_by/{memberName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public members member_name(@PathParam String member_name){
-        return members.findByMemberName(member_name);
-    }
+    public members memberName(@PathParam String memberName) {
+     	return members.findByMemberName(memberName);
+     }
 
     @GET
     @Transactional

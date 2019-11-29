@@ -74,7 +74,7 @@ public class parameterDetailsResource {
     @Transactional
     @Path("/get_by/{operator}")
     @Produces(MediaType.APPLICATION_JSON)
-    public parameterDetails active_flag(@PathParam String operator) {
+    public parameterDetails operator(@PathParam String operator) {
      	return parameterDetails.findByName(operator);
      }
 }
