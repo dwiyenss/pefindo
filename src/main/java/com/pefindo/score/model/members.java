@@ -12,6 +12,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 @Entity
 @Table(name= "members")
 public class members extends PanacheEntityBase {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;

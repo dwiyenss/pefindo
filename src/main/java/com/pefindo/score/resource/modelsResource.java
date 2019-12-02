@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.pefindo.score.model.members;
 import com.pefindo.score.model.models;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -30,6 +31,14 @@ public class modelsResource {
     @Path("/get")
     public List<models> getall() {
         return models.listAll();
+    }
+    
+    @GET
+    @Transactional
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public models id(@PathParam Long id){
+        return models.findById(id);
     }
 
     @POST
